@@ -19,49 +19,69 @@
       <p id="currentDay"></p>
     </div>
     <div class="container">
-      <div class="weather-app">
-        <form class="search-form" id="form">
-          <div class="row">
-            <div class="col-9">
-              <input
-                type="search"
-                placeholder="Type a city"
-                autofocus="on"
-                autocomplete="off"
-                class="form-control shadow-sm"
-                id="city-input"
-              />
-            </div>
-            <div class="col-3">
-              <input
-                type="submit"
-                value="Search"
-                class="form-control btn btn-primary shadow-sm"
-              />
-            </div>
+      <div class="row">
+        <div class="col-3">
+          <form class="search-form" id="form">
+            <input
+              type="search"
+              placeholder="Type a city"
+              autofocus="on"
+              autocomplete="off"
+              class="form-control shadow-sm"
+              id="city-input"
+            />
+            <input
+              type="submit"
+              value="Search"
+              class="form-control btn btn-primary shadow-sm"
+            />
+          </form>
+        </div>
+        <div class="row" id="five-day-forecast">
+          <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
+            <p class="mt-3 mb-0 forecast-date">1/11/2023</p>
+            <img
+              src="https://openweathermap.org/img/wn/02n@2x.png"
+              alt="few clouds"
+            />
+            <p>Temp: 34 °F</p>
+            <p>Humidity: 49%</p>
           </div>
-        </form>
-        <ul>
-          <li id="date">Wednesday 22:00</li>
-          <li id="description">Partly Cloudy</li>
-        </ul>
-        <div class="row">
-          <div class="col-6">
-            <div class="clearfix">
-              <img
-                src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-                alt="Cloudy icon"
-                class="weather-icon float-left"
-              />
-              <div class="float-left"></div>
-            </div>
+          <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
+            <p class="mt-3 mb-0 forecast-date">1/11/2023</p>
+            <img
+              src="https://openweathermap.org/img/wn/02n@2x.png"
+              alt="few clouds"
+            />
+            <p>Temp: 34 °F</p>
+            <p>Humidity: 49%</p>
           </div>
-          <div class="col-6">
-            <ul>
-              <li>Precipitation: 0%</li>
-              <li>Humidity:</li>
-              <li>Wind:</li>
-            </ul>
+          <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
+            <p class="mt-3 mb-0 forecast-date">1/11/2023</p>
+            <img
+              src="https://openweathermap.org/img/wn/02n@2x.png"
+              alt="few clouds"
+            />
+            <p>Temp: 34 °F</p>
+            <p>Humidity: 49%</p>
+          </div>
+          <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
+            <p class="mt-3 mb-0 forecast-date">1/11/2023</p>
+            <img
+              src="https://openweathermap.org/img/wn/02n@2x.png"
+              alt="few clouds"
+            />
+            <p>Temp: 34 °F</p>
+            <p>Humidity: 49%</p>
+          </div>
+          <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
+            <p class="mt-3 mb-0 forecast-date">1/11/2023</p>
+            <img
+              src="https://openweathermap.org/img/wn/02n@2x.png"
+              alt="few clouds"
+            />
+            <p>Temp: 34 °F</p>
+            <p>Humidity: 49%</p>
           </div>
         </div>
       </div>
