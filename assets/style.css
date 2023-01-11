@@ -1,10 +1,7 @@
 .container {
   margin-top: 50px;
+  margin-bottom: 50px;
   text-align: center;
-}
-
-h1 {
-  padding-bottom: 30px;
 }
 
 #five-day-forecast {
