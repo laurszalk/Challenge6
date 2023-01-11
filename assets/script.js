@@ -9,3 +9,9 @@ function displayTime() {
 }
 
 displayTime();
+
+var button = $("#btn");
+
+button.click(function () {
+  console.log("Does this work?");
+});
