@@ -1,3 +1,12 @@
+.container {
+  margin-top: 50px;
+  text-align: center;
+}
+
 h1 {
-    color: purple;
+  padding-bottom: 30px;
+}
+
+#five-day-forecast {
+  justify-content: center;
 }
