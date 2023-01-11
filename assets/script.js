@@ -26,19 +26,28 @@ $(function () {
   //   var cityListItem = $("#city-input").val();
   //   $("form").append("<input />").attr("value", cityListItem);
 
-  button.click(function () {
+  button.click(function (event) {
+    event.preventDefault();
     // get the city name
     var cityListItem = $("#city-input").val();
 
     // create a new input element and set attributes
-    const newInput = $("<input>")
+    var newInput = $("<input>")
       .attr("value", cityListItem)
       .attr("type", "submit")
       .attr("class", "form-control shadow-sm");
 
     // now append the new element to a parent element (here it's the form)
-    $("form").append(newInput);
+    appendedInput = $("form").append(newInput);
 
+    //trying to add an event listneer to the newly appended city
+    //so that we can eventually click the city and get the weather
+    appendedInput.click(function (event) {
+      event.stopPropagation();
+      event.preventDefault();
+
+      console.log("click");
+    });
     //clear the form after you type a city
     $("#city-input").val("");
   });
