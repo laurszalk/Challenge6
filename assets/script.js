@@ -18,6 +18,25 @@ $(function () {
 
   searchForm.on("submit", function (event) {
     event.preventDefault();
+    function getWeather(forecastQueryURL) {
+      fetch(forecastQueryURL)
+        .then(function (response) {
+          console.log(response.data);
+          //  Conditional for the the response.status. checking to make sure the status is good
+          if (response.status !== 200) {
+            // Place the response.status on the page.
+            responseText.textContent = response.status;
+          }
+          return response.json();
+        })
+        .then(function (data) {
+          // // Make sure to look at the response in the console and read how 404 response is structured.
+          // console.log(data.hits[0].recipe.label);
+          // console.log(data); //when you start building the html in js
+          // // below is the functions we deciced on jsut added as code
+          // recipeArray.push(data.hits[0]);
+        });
+    }
 
     //the event handler submit is what's creating the button and then we attach the event to it
     // get the city name
@@ -46,23 +65,3 @@ $(function () {
     });
   });
 });
-
-// function getWeather(forecastQueryURL) {
-//   fetch(forecastQueryURL)
-//     .then(function (response) {
-//       console.log(response.data);
-//       //  Conditional for the the response.status. checking to make sure the status is good
-//       if (response.status !== 200) {
-//         // Place the response.status on the page.
-//         responseText.textContent = response.status;
-//       }
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       // Make sure to look at the response in the console and read how 404 response is structured.
-//       console.log(data.hits[0].recipe.label);
-//       console.log(data); //when you start building the html in js
-//       // below is the functions we deciced on jsut added as code
-//       recipeArray.push(data.hits[0]);
-//     });
-// }
