@@ -1,8 +1,11 @@
-// let apiKey = "a64546395beb5601577c4fae1c60f311";
-// let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+let apiKey = "a64546395beb5601577c4fae1c60f311";
+// let cityID = response.data.id;
+let forecastQueryURL =
+  "api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}"; //taken from documentation
 
 //displays current day and time at the top of page
-var button = $(".btn");
+
+var searchForm = $("#form");
 
 $(function () {
   var timeDisplay = $("#currentDay");
@@ -13,42 +16,53 @@ $(function () {
 
   displayTime();
 
-  //i need to add the fetch I think onto this click event
-
-  button.click(function (event) {
+  searchForm.on("submit", function (event) {
     event.preventDefault();
-    console.log("Does this work?");
-  });
 
-  //click event on button to display the previously searched cities on the webapge
-  //need to capture the input text and display on page
-  // button.click(function () {
-  //   var cityListItem = $("#city-input").val();
-  //   $("form").append("<input />").attr("value", cityListItem);
-
-  button.click(function (event) {
-    event.preventDefault();
+    //the event handler submit is what's creating the button and then we attach the event to it
     // get the city name
     var cityListItem = $("#city-input").val();
-
-    // create a new input element and set attributes
-    var newInput = $("<input>")
-      .attr("value", cityListItem)
-      .attr("type", "submit")
-      .attr("class", "form-control shadow-sm");
-
+    if (cityListItem === "") {
+      alert("Please enter a city");
+    } else {
+      // create a new button element and set attributes
+      var historyButton = $(`<button>${cityListItem}</button>`) //using template literals in place of concatenation
+        .attr("type", "button")
+        .attr("class", "w-100 btn btn-primary");
+    }
     // now append the new element to a parent element (here it's the form)
-    appendedInput = $("form").append(newInput);
+    searchForm.append(historyButton);
+
+    //clear the form after you type a city
+    $("#city-input").val("");
+
+    //double check typos in cities and if we need a conditional ?
 
     //trying to add an event listneer to the newly appended city
     //so that we can eventually click the city and get the weather
-    appendedInput.click(function (event) {
-      event.stopPropagation();
+    historyButton.on("click", function (event) {
       event.preventDefault();
-
-      console.log("click");
+      console.log(`search for ${cityListItem}`);
     });
-    //clear the form after you type a city
-    $("#city-input").val("");
   });
 });
+
+// function getWeather(forecastQueryURL) {
+//   fetch(forecastQueryURL)
+//     .then(function (response) {
+//       console.log(response.data);
+//       //  Conditional for the the response.status. checking to make sure the status is good
+//       if (response.status !== 200) {
+//         // Place the response.status on the page.
+//         responseText.textContent = response.status;
+//       }
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       // Make sure to look at the response in the console and read how 404 response is structured.
+//       console.log(data.hits[0].recipe.label);
+//       console.log(data); //when you start building the html in js
+//       // below is the functions we deciced on jsut added as code
+//       recipeArray.push(data.hits[0]);
+//     });
+// }
