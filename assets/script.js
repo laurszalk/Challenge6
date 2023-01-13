@@ -1,67 +1,93 @@
 let apiKey = "a64546395beb5601577c4fae1c60f311";
-// let cityID = response.data.id;
-let forecastQueryURL =
-  "api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}"; //taken from documentation
-
-//displays current day and time at the top of page
 
 var searchForm = $("#form");
 
-$(function () {
-  var timeDisplay = $("#currentDay");
-  function displayTime() {
-    var rightNow = dayjs().format("dddd, MMM DD, YYYY");
-    timeDisplay.text(rightNow);
+//displays current day and time at the top of page
+var timeDisplay = $("#currentDay");
+function displayTime() {
+  var rightNow = dayjs().format("dddd, MMM DD, YYYY");
+  timeDisplay.text(rightNow);
+}
+
+displayTime();
+
+searchForm.on("submit", function (event) {
+  event.preventDefault();
+  let city = $("#city-input").val();
+  console.log(city);
+
+  let forecastQueryURL =
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
+    city +
+    "&appid=" +
+    apiKey;
+
+  getWeather(forecastQueryURL);
+
+  //the event handler submit is what's creating the button and then we attach the event to it
+  // get the city name
+  var cityListItem = $("#city-input").val();
+  if (cityListItem === "") {
+    alert("Please enter a city");
+  } else {
+    // create a new button element and set attributes
+    var historyButton = $(`<button>${cityListItem}</button>`) //using template literals in place of concatenation
+      .attr("type", "button")
+      .attr("class", "w-100 btn btn-primary");
   }
+  // now append the new element to a parent element (here it's the form)
+  searchForm.append(historyButton);
 
-  displayTime();
+  //clear the form after you type a city
+  $("#city-input").val("");
 
-  searchForm.on("submit", function (event) {
+  //add click event to the newly appended city
+  //so that we can click the city and get the weather
+  historyButton.on("click", function (event) {
+    cityListItem = event.target.innerText;
     event.preventDefault();
-    function getWeather(forecastQueryURL) {
-      fetch(forecastQueryURL)
-        .then(function (response) {
-          console.log(response.data);
-          //  Conditional for the the response.status. checking to make sure the status is good
-          if (response.status !== 200) {
-            // Place the response.status on the page.
-            responseText.textContent = response.status;
-          }
-          return response.json();
-        })
-        .then(function (data) {
-          // // Make sure to look at the response in the console and read how 404 response is structured.
-          // console.log(data.hits[0].recipe.label);
-          // console.log(data); //when you start building the html in js
-          // // below is the functions we deciced on jsut added as code
-          // recipeArray.push(data.hits[0]);
-        });
-    }
+    console.log(cityListItem);
+    $("#city-input").val(cityListItem);
+    forecastQueryURL =
+      "https://api.openweathermap.org/data/2.5/forecast?q=" +
+      cityListItem +
+      "&appid=" +
+      apiKey;
 
-    //the event handler submit is what's creating the button and then we attach the event to it
-    // get the city name
-    var cityListItem = $("#city-input").val();
-    if (cityListItem === "") {
-      alert("Please enter a city");
-    } else {
-      // create a new button element and set attributes
-      var historyButton = $(`<button>${cityListItem}</button>`) //using template literals in place of concatenation
-        .attr("type", "button")
-        .attr("class", "w-100 btn btn-primary");
-    }
-    // now append the new element to a parent element (here it's the form)
-    searchForm.append(historyButton);
-
-    //clear the form after you type a city
-    $("#city-input").val("");
-
-    //double check typos in cities and if we need a conditional ?
-
-    //trying to add an event listneer to the newly appended city
-    //so that we can eventually click the city and get the weather
-    historyButton.on("click", function (event) {
-      event.preventDefault();
-      console.log(`search for ${cityListItem}`);
-    });
+    getWeather(forecastQueryURL);
   });
 });
+
+function getWeather(forecastQueryURL) {
+  //the forecast queryURL is the endpoint for the api
+  //browser only understands string data types (JSON and javascript)
+  //fetch is built into the browser for us
+  //response is a promise, we don't know how long it will take to fulfill
+  fetch(forecastQueryURL)
+    //callback function, we call it after some other operation happens
+    .then(function (response) {
+      console.log(response);
+      //  Conditional for the the response.status; checking to make sure the status is good
+      if (response.status === 200) {
+        //need to pass this information to the next .then
+        //the first .then needs to complete before the next .then
+        //.json() returns the json object and converts it to javascript object
+        //in json the keys and values are both strings
+        return response.json();
+      } else {
+        // if the status is not 200, then we throw an error
+        throw new Error("Something went wrong");
+      }
+    })
+    //the response object in javascript format from line 76
+    //we need to pull out the info we need from data- data is our js object
+    .then(function (data) {
+      console.log(data);
+    });
+  console.log("i am after the fetch request");
+}
+
+//will need to store and retrieve to local storage can do it last
+//take results of data and write it to forecast
+//need to add ids to html
+//remember i+=7 for results
