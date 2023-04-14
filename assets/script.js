@@ -87,16 +87,32 @@ function getWeather(forecastQueryUrl) {
       console.log(data);
       var lat = data.city.coord.lat;
       var lon = data.city.coord.lon;
-      // var currentWeatherUrl =
-      //   "https://api.openweathermap.org/data/2.5/weather?lat=" +
-      //   lat +
-      //   "&lon=" +
-      //   lon +
-      //   "&appid=" +
-      //   apiKey;
+      var currentWeatherUrl =
+        "https://api.openweathermap.org/data/2.5/weather?lat=" +
+        lat +
+        "&lon=" +
+        lon +
+        "&appid=" +
+        apiKey;
 
       console.log(lat);
       console.log(lon);
+
+      fetch(currentWeatherUrl).then(function (response) {
+        console.log(response);
+
+        //  Conditional for the the response.status; checking to make sure the status is good
+        if (response.status === 200) {
+          //need to pass this information to the next .then
+          //the first .then needs to complete before the next .then
+          //.json() returns the json object and converts it to javascript object
+          //in json the keys and values are both strings
+          return response.json();
+        } else {
+          // if the status is not 200, then we throw an error
+          throw new Error("Something went wrong");
+        }
+      });
     });
   console.log("i am after the fetch request");
 }
@@ -105,10 +121,3 @@ function getWeather(forecastQueryUrl) {
 //take results of data and write it to forecast
 //need to add ids to html
 //remember i+=7 for results
-
-//   var searchButton = document.querySelector(".btn-search");
-//   var weatherContainer = document.getElementById("five-day-forecast");
-//   weatherContainer.removeAttribute("class", "hide");
-
-// // user clicks button to search weather
-// searchButton.onclick = search;
