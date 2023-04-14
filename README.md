@@ -1,2 +1,2 @@
 # Weather-Dashboard
-Week 6 Challenge
+Module 6 Challenge
