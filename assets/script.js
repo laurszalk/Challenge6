@@ -1,8 +1,8 @@
-let apiKey = "a64546395beb5601577c4fae1c60f311";
-
+var apiKey = "a64546395beb5601577c4fae1c60f311";
 var searchForm = $("#form");
+var weatherDisplay = document.getElementById("five-day-forecast");
 
-//displays current day and time at the top of page
+//displays current day at the top of page
 var timeDisplay = $("#currentDay");
 function displayTime() {
   var rightNow = dayjs().format("dddd, MMM DD, YYYY");
@@ -13,16 +13,15 @@ displayTime();
 
 searchForm.on("submit", function (event) {
   event.preventDefault();
-  let city = $("#city-input").val();
-  console.log(city);
+  var city = $("#city-input").val();
 
-  let forecastQueryURL =
+  var forecastQueryUrl =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
     city +
-    "&appid=" +
+    "&units=imperial&appid=" +
     apiKey;
 
-  getWeather(forecastQueryURL);
+  getWeather(forecastQueryUrl);
 
   //the event handler submit is what's creating the button and then we attach the event to it
   // get the city name
@@ -34,6 +33,8 @@ searchForm.on("submit", function (event) {
     var historyButton = $(`<button>${cityListItem}</button>`) //using template literals in place of concatenation
       .attr("type", "button")
       .attr("class", "w-100 btn btn-primary");
+    // display the weather dashboard
+    weatherDisplay.classList.remove("hide");
   }
   // now append the new element to a parent element (here it's the form)
   searchForm.append(historyButton);
@@ -54,19 +55,20 @@ searchForm.on("submit", function (event) {
       "&appid=" +
       apiKey;
 
-    getWeather(forecastQueryURL);
+    getWeather(forecastQueryUrl);
   });
 });
 
-function getWeather(forecastQueryURL) {
-  //the forecast queryURL is the endpoint for the api
+function getWeather(forecastQueryUrl) {
+  //the forecast queryUrl is the endpoint for the api
   //browser only understands string data types (JSON and javascript)
   //fetch is built into the browser for us
   //response is a promise, we don't know how long it will take to fulfill
-  fetch(forecastQueryURL)
+  fetch(forecastQueryUrl)
     //callback function, we call it after some other operation happens
     .then(function (response) {
       console.log(response);
+
       //  Conditional for the the response.status; checking to make sure the status is good
       if (response.status === 200) {
         //need to pass this information to the next .then
@@ -83,6 +85,18 @@ function getWeather(forecastQueryURL) {
     //we need to pull out the info we need from data- data is our js object
     .then(function (data) {
       console.log(data);
+      var lat = data.city.coord.lat;
+      var lon = data.city.coord.lon;
+      // var currentWeatherUrl =
+      //   "https://api.openweathermap.org/data/2.5/weather?lat=" +
+      //   lat +
+      //   "&lon=" +
+      //   lon +
+      //   "&appid=" +
+      //   apiKey;
+
+      console.log(lat);
+      console.log(lon);
     });
   console.log("i am after the fetch request");
 }
@@ -91,3 +105,10 @@ function getWeather(forecastQueryURL) {
 //take results of data and write it to forecast
 //need to add ids to html
 //remember i+=7 for results
+
+//   var searchButton = document.querySelector(".btn-search");
+//   var weatherContainer = document.getElementById("five-day-forecast");
+//   weatherContainer.removeAttribute("class", "hide");
+
+// // user clicks button to search weather
+// searchButton.onclick = search;

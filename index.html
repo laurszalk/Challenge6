@@ -19,6 +19,14 @@
       <p id="currentDay"></p>
     </div>
     <div class="container">
+      <div class="row bg-primary text-white m-2 rounded" id="current-weather">
+        <h3 id="current-city">Current City</h3>
+        <img id="current-icon" alt="weather icon" />
+        <p id="temperature"></p>
+        <p id="humidity"></p>
+        <p id="wind-speed"></p>
+        <p id="uv-index"></p>
+      </div>
       <div class="row">
         <div class="col-3">
           <form class="search-form" id="form">
@@ -33,65 +41,30 @@
             <input
               type="submit"
               value="Search"
-              class="form-control btn btn-primary shadow-sm"
+              class="form-control btn btn-primary btn-search shadow-sm"
             />
           </form>
         </div>
         <div class="row col-9" id="five-day-forecast">
-          <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
-            <p class="mt-3 mb-0 forecast-date">1/11/2023</p>
-            <img
-              src="https://openweathermap.org/img/wn/02n@2x.png"
-              alt="few clouds"
-            />
-            <p>Temp: 34 °F</p>
-            <p>Humidity: 49%</p>
-          </div>
-          <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
-            <p class="mt-3 mb-0 forecast-date">1/11/2023</p>
-            <img
-              src="https://openweathermap.org/img/wn/02n@2x.png"
-              alt="few clouds"
-            />
-            <p>Temp: 34 °F</p>
-            <p>Humidity: 49%</p>
-          </div>
-          <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
-            <p class="mt-3 mb-0 forecast-date">1/11/2023</p>
-            <img
-              src="https://openweathermap.org/img/wn/02n@2x.png"
-              alt="few clouds"
-            />
-            <p>Temp: 34 °F</p>
-            <p>Humidity: 49%</p>
-          </div>
-          <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
-            <p class="mt-3 mb-0 forecast-date">1/11/2023</p>
-            <img
-              src="https://openweathermap.org/img/wn/02n@2x.png"
-              alt="few clouds"
-            />
-            <p>Temp: 34 °F</p>
-            <p>Humidity: 49%</p>
-          </div>
-          <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
-            <p class="mt-3 mb-0 forecast-date">1/11/2023</p>
-            <img
-              src="https://openweathermap.org/img/wn/02n@2x.png"
-              alt="few clouds"
-            />
-            <p>Temp: 34 °F</p>
-            <p>Humidity: 49%</p>
-          </div>
+          <div
+            class="col-md-2 forecast bg-primary text-white m-2 rounded"
+          ></div>
+          <div
+            class="col-md-2 forecast bg-primary text-white m-2 rounded"
+          ></div>
+          <div
+            class="col-md-2 forecast bg-primary text-white m-2 rounded"
+          ></div>
+          <div
+            class="col-md-2 forecast bg-primary text-white m-2 rounded"
+          ></div>
+          <div
+            class="col-md-2 forecast bg-primary text-white m-2 rounded"
+          ></div>
         </div>
       </div>
     </div>
-    <footer>
-      <a href="https://github.com/laurszalk/Weather-Dashboard" target="_blank"
-        >Open Source Code</a
-      >
-      by Lauren
-    </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"

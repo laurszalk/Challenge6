@@ -13,6 +13,14 @@
   justify-content: center;
 }
 
+.hide {
+  display: none;
+}
+
 footer {
   margin-left: 20px;
+}
+
+#current-weather {
+  justify-content: center;
 }
