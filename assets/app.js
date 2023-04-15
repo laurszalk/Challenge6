@@ -12,8 +12,8 @@ var iconEl = document.querySelector("#current-icon");
 var searchForm = document.querySelector("#form");
 
 function getWeather() {
-  // var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=" + ${city} + "&units=imperial&appid=" +
-  // apiKey`;
+  var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=" + ${cityEl} + "&units=imperial&appid=" +
+  apiKey`;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -38,19 +38,16 @@ function getWeather() {
     });
 }
 
-// getWeather();
+// function search(city) {
+//   let apiKey = "2ff29bed3181c3526c35cc5408037f85";
+//   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+//   axios.get(apiUrl).then(displayTemperature);
+// }
 
 function handleFormSubmit(event) {
   event.preventDefault();
-  // var cityInputEl = document.querySelector("#city-input");
-  var city = $("#city-input").val();
-  var apiUrl =
-    "https://api.openweathermap.org/data/2.5/forecast?q=" +
-    city +
-    "&units=imperial&appid=" +
-    apiKey;
-
-  getWeather(apiUrl);
+  var cityInputEl = document.querySelector("#city-input");
+  getWeather(cityInputEl);
 }
 
 //displays current day at the top of page
