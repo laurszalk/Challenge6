@@ -1,6 +1,11 @@
 var apiKey = "a64546395beb5601577c4fae1c60f311";
 var searchForm = $("#form");
 var weatherDisplay = document.getElementById("five-day-forecast");
+var apiUrl =
+  "https://api.openweathermap.org/data/2.5/forecast?q=" +
+  city +
+  "&units=imperial&appid=" +
+  apiKey;
 
 //displays current day at the top of page
 var timeDisplay = $("#currentDay");
@@ -11,17 +16,17 @@ function displayTime() {
 
 displayTime();
 
-searchForm.on("submit", function (event) {
+searchForm.addEventListener("submit", function (event) {
   event.preventDefault();
   var city = $("#city-input").val();
 
-  var forecastQueryUrl =
+  var apiUrl =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
     city +
     "&units=imperial&appid=" +
     apiKey;
 
-  getWeather(forecastQueryUrl);
+  getWeather(apiUrl);
 
   //the event handler submit is what's creating the button and then we attach the event to it
   // get the city name
@@ -52,19 +57,19 @@ searchForm.on("submit", function (event) {
     forecastQueryURL =
       "https://api.openweathermap.org/data/2.5/forecast?q=" +
       cityListItem +
-      "&appid=" +
+      "&units=imperial&appid=" +
       apiKey;
 
-    getWeather(forecastQueryUrl);
+    getWeather(apiUrl);
   });
 });
 
-function getWeather(forecastQueryUrl) {
+function getWeather(apiUrl) {
   //the forecast queryUrl is the endpoint for the api
   //browser only understands string data types (JSON and javascript)
   //fetch is built into the browser for us
   //response is a promise, we don't know how long it will take to fulfill
-  fetch(forecastQueryUrl)
+  fetch(apiUrl)
     //callback function, we call it after some other operation happens
     .then(function (response) {
       console.log(response);

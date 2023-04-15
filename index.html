@@ -20,12 +20,15 @@
     </div>
     <div class="container">
       <div class="row bg-primary text-white m-2 rounded" id="current-weather">
-        <h3 id="current-city">Current City</h3>
+        <h3 id="current-city"></h3>
         <img id="current-icon" alt="weather icon" />
-        <p id="temperature"></p>
-        <p id="humidity"></p>
-        <p id="wind-speed"></p>
-        <p id="uv-index"></p>
+        <ul>
+          <li id="temperature"></li>
+          <li id="description"></li>
+          <li id="humidity"></li>
+          <li id="wind-speed"></li>
+          <li id="uv-index"></li>
+        </ul>
       </div>
       <div class="row">
         <div class="col-3">
@@ -71,6 +74,6 @@
       integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
       crossorigin="anonymous"
     ></script>
-    <script src="./assets/script.js"></script>
+    <script src="./assets/app.js"></script>
   </body>
 </html>

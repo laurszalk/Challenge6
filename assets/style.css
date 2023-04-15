@@ -24,3 +24,11 @@ footer {
 #current-weather {
   justify-content: center;
 }
+
+#description:first-letter {
+  text-transform: capitalize;
+}
+
+li {
+  list-style-type: none;
+}
