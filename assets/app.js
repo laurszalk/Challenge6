@@ -3,7 +3,7 @@ var apiKey = "a64546395beb5601577c4fae1c60f311";
 //   "https://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&appid=" +
 //   apiKey;
 
-var cityEl = document.querySelector("#current-city");
+var cityEl = document.querySelector("#current-city").value;
 var temperatureEl = document.querySelector("#temperature");
 var descriptionEl = document.querySelector("#description");
 var windEl = document.querySelector("#wind-speed");
@@ -12,9 +12,7 @@ var iconEl = document.querySelector("#current-icon");
 var searchForm = document.querySelector("#form");
 
 function getWeather() {
-  var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=" + ${cityEl} + "&units=imperial&appid=" +
-  apiKey`;
-
+  var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityEl}&units=imperial&appid=${apiKey}`;
   fetch(apiUrl)
     .then(function (response) {
       if (response.status === 200) {
@@ -37,12 +35,6 @@ function getWeather() {
       );
     });
 }
-
-// function search(city) {
-//   let apiKey = "2ff29bed3181c3526c35cc5408037f85";
-//   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-//   axios.get(apiUrl).then(displayTemperature);
-// }
 
 function handleFormSubmit(event) {
   event.preventDefault();
