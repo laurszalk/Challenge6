@@ -11,6 +11,8 @@ var humidityEl = document.querySelector("#humidity");
 var iconEl = document.querySelector("#current-icon");
 var searchForm = document.querySelector("#form");
 var currentCityEl = document.querySelector("#current-city");
+var weatherContainer = document.querySelector("#current-weather");
+var forecastContainer = document.querySelector("#five-day-forecast");
 
 function getWeather() {
   var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&units=imperial&appid=${apiKey}`;
@@ -39,14 +41,17 @@ function getWeather() {
 
 function handleFormSubmit(event) {
   event.preventDefault();
+  weatherContainer.style.visibility = "visible";
+  forecastContainer.removeAttribute("hide");
+
   if (cityInput.value === "") {
     alert("Please enter a city");
   } else {
-    var historyButton = document.createElement("button");
-    historyButton.innerHTML = cityInput.value;
-    historyButton.setAttribute("class", "w-100 btn btn-primary");
-    // // now append the new element to a parent element (here it's the form)
-    searchForm.append(historyButton);
+    // var historyButton = document.createElement("button");
+    // historyButton.innerHTML = cityInput.value;
+    // historyButton.setAttribute("class", "w-100 btn btn-primary");
+    // // // now append the new element to a parent element (here it's the form)
+    // searchForm.append(historyButton);
 
     getWeather(cityInput);
   }
@@ -67,3 +72,19 @@ displayTime();
 searchForm.addEventListener("submit", handleFormSubmit);
 
 //need to add when you click history button
+
+// Stores the searched cities in localstorage
+let cities = [];
+function storeCities() {
+  // Stringify and set key in localStorage to cities array
+  localStorage.setItem("Cities Searched", JSON.stringify(cities));
+  // I don't think this is working so sad
+  cities.push(cityInput.value);
+}
+storeCities();
+
+function displayForecast() {
+  
+}
+
+displayForecast();
