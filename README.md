@@ -1,4 +1,5 @@
 # Weather-Dashboard
+
 Module 6 Challenge
 
 # Description
@@ -11,8 +12,8 @@ HTML, CSS, JavaScript, jQuery, OpenWeather API, Day.js API, Bootstrap
 
 # Deployment
 
+https://laurszalk.github.io/Weather-Dashboard/
 
 # License
 
 This project is licensed under the MIT License.
-
